@@ -26,7 +26,8 @@ void loop() {
 
     HTTPClient http;
 
-    http.begin("https://jsonplaceholder.typicode.com/todos/1");
+    String server = String("http://") + MAC_IP + ":8080/health";
+    http.begin(server);
     int httpResponseCode = http.GET();
 
     if (httpResponseCode > 0) {
@@ -40,7 +41,7 @@ void loop() {
         return;
       }
       Serial.println(httpResponseCode);
-      String title = doc["title"];
+      String title = doc["health"];
       Serial.println(title);
       Serial.println("Success");
     } else {

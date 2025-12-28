@@ -6,6 +6,10 @@ ifeq ($(strip $(GOTRANSIT_KEY)),)
 $(error GOTRANSIT_KEY is not set)
 endif
 
+ifeq ($(strip $(MAC_IP)),)
+$(error MAC_IP is not set)
+endif
+
 run:
 	@echo "starting backend server"
 	.venv/bin/python -u backend/main.py >> $(LOGFILE) 2>&1 & echo $$! > $(PIDFILE)
@@ -17,6 +21,6 @@ clean:
 	@echo "stopping backend server"
 	@if [ -f $(PIDFILE) ]; then \
 		kill $$(cat $(PIDFILE)) 2>/dev/null || true; \
-		rm -f $(PIDFILE); \
-		rm -f $(LOGFILE); \
 	fi
+	@rm -f $(PIDFILE)
+	@rm -f $(LOGFILE)
