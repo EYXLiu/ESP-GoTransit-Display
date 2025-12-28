@@ -7,4 +7,4 @@ source .venv/bin/activate
 pip install requirements.txt
 ```
 To get the MAC_IP, on macOS, run `ipconfig getifaddr en0` and that's the MAC_IP  
-Run `export MAC_IP=`${ip}`  
+Run `export MAC_IP=$(ipconfig getifaddr en0)`  
