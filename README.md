@@ -16,3 +16,8 @@ Run `make clean` to clean up the flask backend + delete log/pid files
 Requires the Wokwi Simulator extension  
 Navigate to the diagram.json file, a Wokwi diagram should appear  
 Click on the green run button to run  
+
+# Debugging
+If the server doesn't shut down properly (eg. didn't clean properly after use)  
+Run `lsof -i :8080` to check for servers running on port 8080  
+Run `kill {pid}` to kill the process running (make sure it's the python script and not another backend project)  

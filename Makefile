@@ -6,9 +6,13 @@ ifeq ($(strip $(MAC_IP)),)
 $(error MAC_IP is not set)
 endif
 
+ifeq ($(strip $(BUS_STOP)),)
+$(error BUS_STOP is not set)
+endif
+
 all: run
 
-run:
+run: clean
 	@echo "starting backend server"
 	.venv/bin/python -u backend/main.py >> $(LOGFILE) 2>&1 & echo $$! > $(PIDFILE)
 	@echo "making pio file"

@@ -2,10 +2,11 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
-#include <LiquidCrystal_I2C.h>
+#include <lcd.hpp>
+#include <text.hpp>
 
 const char* ssid = "Wokwi-GUEST";
-LiquidCrystal_I2C lcd(0x27, 16, 2);
+LCD *lcd;
 
 void setup() {
   Serial.begin(115200);
@@ -19,10 +20,9 @@ void setup() {
   }
   Serial.println("");
   Serial.println("Connected");
-//setup lcd
-  lcd.init();
-  lcd.backlight();
-  lcd.setCursor(0, 0);
+
+  // setup lcd
+  lcd = new LCD(0x27, 20, 4);
 }
 
 void loop() {
@@ -32,25 +32,20 @@ void loop() {
 
     HTTPClient http;
 
-    String server = String("http://") + MAC_IP + ":8080/health";
+    String server = String("http://") + MAC_IP + ":8080/route/" + BUS_STOP;
     http.begin(server);
     int httpResponseCode = http.GET();
 
     if (httpResponseCode > 0) {
       String response = http.getString();
-      JsonDocument doc;
-      DeserializationError error = deserializeJson(doc, response);
-      if (error) {
+      Text text(response, 20);
+      if (text.getError()) {
         Serial.print("Json parse error: ");
-        Serial.println(error.c_str());
+        Serial.println(text.getError().c_str());
         http.end();
         return;
       }
-      lcd.setCursor(0, 0);
-      lcd.print(httpResponseCode);
-      String title = doc["key"];
-      lcd.setCursor(0, 1);
-      lcd.print(title);
+      lcd->LCD_PrintLCD(text.getFirstBuffer(), text.getSecondBuffer(), "", text.getBottomBuffer());
       Serial.println("Success");
     } else {
       Serial.print("Error on http request: ");
