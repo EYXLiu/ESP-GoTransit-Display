@@ -1,6 +1,6 @@
-#include <text.hpp>
+#include <schedule.hpp>
 
-Text::Text(String response, int size) :response(response), error(deserializeJson(json, response)), size(size), curr(0) {
+Schedule::Schedule(String response, int size) :response(response), error(deserializeJson(json, response)), size(size), curr(0) {
     firstBuffer = new char[size + 1];
     secondBuffer = new char[size + 1];
     bottomBuffer = new char[size + 1];
@@ -27,25 +27,25 @@ Text::Text(String response, int size) :response(response), error(deserializeJson
     bottomBuffer[0] = '\0';
 }
 
-Text::~Text() {
+Schedule::~Schedule() {
     delete[] firstBuffer;
     delete[] secondBuffer;
     delete[] bottomBuffer;
 }
 
-const char* Text::getFirstBuffer() {
+const char* Schedule::getFirstBuffer() {
     return firstBuffer;
 }
 
-const char* Text::getSecondBuffer() {
+const char* Schedule::getSecondBuffer() {
     return secondBuffer;
 }
 
-const char* Text::getBottomBuffer() {
+const char* Schedule::getBottomBuffer() {
     return bottomBuffer;
 }
 
-DeserializationError Text::getError() {
+DeserializationError Schedule::getError() {
     return error;
 }
 

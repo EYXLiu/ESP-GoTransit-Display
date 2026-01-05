@@ -3,7 +3,7 @@
 
 #include <ArduinoJson.h>
 
-class Text {
+class Schedule {
     private:
         String response;
         JsonDocument json;
@@ -15,8 +15,8 @@ class Text {
         int curr;
         
     public:
-        Text(String response, int size);
-        ~Text();
+        Schedule(String response, int size);
+        ~Schedule();
         const char* getFirstBuffer();
         const char* getSecondBuffer();
         const char* getBottomBuffer();

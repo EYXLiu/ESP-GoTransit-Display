@@ -3,7 +3,7 @@
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
 #include <lcd.hpp>
-#include <text.hpp>
+#include <schedule.hpp>
 
 const char* ssid = "Wokwi-GUEST";
 LCD *lcd;
@@ -38,14 +38,14 @@ void loop() {
 
     if (httpResponseCode > 0) {
       String response = http.getString();
-      Text text(response, 20);
-      if (text.getError()) {
+      Schedule schedule(response, 20);
+      if (schedule.getError()) {
         Serial.print("Json parse error: ");
-        Serial.println(text.getError().c_str());
+        Serial.println(schedule.getError().c_str());
         http.end();
         return;
       }
-      lcd->LCD_PrintLCD(text.getFirstBuffer(), text.getSecondBuffer(), "", text.getBottomBuffer());
+      lcd->LCD_PrintLCD(schedule.getFirstBuffer(), schedule.getSecondBuffer(), "", schedule.getBottomBuffer());
       Serial.println("Success");
     } else {
       Serial.print("Error on http request: ");
