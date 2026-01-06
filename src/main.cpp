@@ -27,7 +27,7 @@ unsigned long lastSecondary = 1000;
 
 constexpr unsigned long FETCH_INTERVAL = 60000;
 constexpr unsigned long DISPLAY_INTERVAL = 2000;
-constexpr unsigned long DISPLAY_SECONDARY = 100;
+constexpr unsigned long DISPLAY_SECONDARY = 500;
 
 bool fetchSchedule() {
   String response;
@@ -113,7 +113,7 @@ void loop() {
       }
       if (now - lastSecondary >= DISPLAY_SECONDARY) {
         lastSecondary = now;
-        
+
         secondaryLcd->LCD_PrintLCD(
           scrolling->getFirstBuffer(),
           scrolling->getSecondBuffer()
