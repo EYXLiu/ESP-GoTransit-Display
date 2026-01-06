@@ -22,7 +22,6 @@ class Scrolling {
         const char* getFirstBuffer();
         const char* getSecondBuffer();
         DeserializationError getError();
-        int getLen();
 
         void Update();
 };
