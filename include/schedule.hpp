@@ -1,5 +1,5 @@
-#ifndef TEXT_HPP
-#define TEXT_HPP
+#ifndef SCHEDULE_HPP
+#define SCHEDULE_HPP
 
 #include <ArduinoJson.h>
 

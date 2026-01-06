@@ -43,9 +43,9 @@ def routeGet(identifier):
             now = datetime.now()
             delta = scheduled - now
             delta = round(delta.total_seconds() / 60)
-            delta = abs(delta)
+            abs_delta = abs(delta)
             
-            hours, minutes = divmod(delta, 60)
+            hours, minutes = divmod(abs_delta, 60)
             
             time = scheduled.strftime("%Y-%m-%d %H:%M")
             
@@ -59,6 +59,12 @@ def routeGet(identifier):
                 "ScheduledPlatform": bus["ScheduledPlatform"],
                 "_sort": delta
             }
+            
+            if (delta == 0):
+                val["TimeFromNow"] = "Now"
+            elif (delta < 0):
+                val["TimeFromNow"] = "Departed"
+            
             ret.append(val)
         
     ret.sort(key=lambda x: x["_sort"])
