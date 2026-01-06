@@ -1,3 +1,9 @@
+# Transit Display
+Tech Stack: C++, Python, Flask, Make, Wokwi, Platformio, STM32, Arduino 
+
+# Example
+https://github.com/user-attachments/assets/0524eb74-d70c-49ae-836f-d0cb71b9e597
+
 # Compile
 A Go Transit API Key is required for this, set it in the `.env` file as "GOTRANSIT_KEY"  
 Run the following commands to set up the virtual environment  
