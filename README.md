@@ -1,5 +1,5 @@
 # Transit Display
-Tech Stack: C++, Python, Flask, Make, Wokwi, Platformio, STM32, Arduino 
+Tech Stack: C++, Python, Flask, Make, Wokwi, Platformio, ESP32, Arduino 
 
 # Example
 https://github.com/user-attachments/assets/0524eb74-d70c-49ae-836f-d0cb71b9e597
